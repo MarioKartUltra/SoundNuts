@@ -39,3 +39,44 @@ It's an **audio effect** — it needs an input signal.
 Controls: System, Macro, Rate, Filter Base/Amount, Resonance, Tremolo, Auto-Pan,
 Smoothing, Solver (Auto/Numerical/Analytic), On Blow-Up (Reset/Free-Clamp),
 Mix, Output.
+
+---
+
+# v2 — SoundNuts II (beta)
+
+v2 lives beside v1 under a NEW identity so both load in a DAW at once:
+`aufx Snt2 Sdnt`, bundle `com.soundnuts.v2`, product **SoundNuts II**, version 2.0.0.
+The v1 bundles/tag (`v1-baseline`) are untouched. Universal binary (arm64 + x86_64).
+
+## What's new
+- **foleys_gui_magic GUI** (`foleys::MagicProcessor`, C++20) with a designed default
+  layout in `Resources/magic.xml`. Beta builds ship the WYSIWYG palette
+  (`FOLEYS_SHOW_GUI_EDITOR_PALLETTE=1`): open the editor inside the plugin (cog icon)
+  and redesign details live. Custom GuiItems: `PhaseScope` (hero), `RegimeStrip`
+  (click/drag to jump the Macro), `RegimeReadout`, `SystemBrowser`, `LfoMonitor`,
+  `OrbitSigil`, `PresetBar`. Resizable; tooltips on every control. Stealth-beta: the
+  rendered GUI carries no product name — identity is the chartreuse accent + orbit
+  sigil + BETA tag.
+- **Orbit tempo-sync**: `beats` chip locks one characteristic orbit to a beat division
+  (frozen 16-division table; measured native periods, see `docs/MATH.md`). Bar-locked
+  **orbit reset** (off / 1 / 2 / 4 / 8 bars).
+- **LFO A/B mod matrix**: 8 shapes (incl. S&H / smoothed random / drift, seeded and
+  deterministic), free-Hz or synced rate, transport phase-lock, bipolar/unipolar;
+  bounded-offset depths onto Macro, Filter Base, Tremolo, Rate.
+- **System morph**: crossfade between systems (ms or beats), engines pre-built so
+  switching never allocates on the audio thread.
+- **System browser** with search + starred favorites (persist in the session state).
+- **Presets**: 6 factory presets + named user presets under
+  `~/Music/SoundNuts II/Presets/*.xml`.
+- All time/rate controls read in real units (ms / s, Hz, %, dB, divisions).
+
+## Build
+```bash
+./build.sh               # arm64 dev loop
+./build.sh --universal   # arm64 + x86_64 release build
+ctest --test-dir build --output-on-failure   # v1 core check + v2 infra/orbit checks
+```
+Artifacts under `build/SoundNutsII_artefacts/Release/`. Validate: `auval -v aufx Snt2 Sdnt`.
+Vendored shared v2 infra in `Source/common/acv2` (TempoSync/Lfo/SeedPolicy/Units +
+Theme/LnfV2). foleys checkout is expected at `external/foleys_gui_magic` (symlink).
+Math notes: `../docs/MATH.md`.
