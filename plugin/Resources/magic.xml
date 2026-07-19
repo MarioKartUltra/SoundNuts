@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<magic>
+  <Styles>
+    <Style name="default">
+      <Nodes>
+        <root display="flexbox" flex-direction="column" padding="6" background-color="FF0C1018"/>
+      </Nodes>
+      <Classes>
+        <section border="0" margin="2" padding="4" radius="8" background-color="FF141A26"
+                 caption-size="13" caption-color="FF9AA6B4" caption-gap="2" flex-direction="row">
+          <media/>
+        </section>
+        <bare border="0" margin="0" padding="0" background-color="00000000">
+          <media/>
+        </bare>
+        <chipcol flex-direction="column" border="0" margin="0" padding="2" background-color="00000000">
+          <media/>
+        </chipcol>
+        <swap display="contents" border="0" margin="0" padding="0" background-color="00000000">
+          <media/>
+        </swap>
+      </Classes>
+      <Types>
+        <Slider border="0" margin="1" padding="2" background-color="00000000"
+                slider-type="rotary" slider-textbox="textbox-below" lookAndFeel="LnfV2"
+                caption-size="12" caption-color="FF9AA6B4"/>
+        <ComboBox border="0" margin="1" padding="2" background-color="00000000" lookAndFeel="LnfV2"
+                  caption-size="12" caption-color="FF9AA6B4" combo-background="FF080B11"
+                  combo-text="FFEEF2E9" combo-arrow="FF9AA6B4"
+                  combo-menu-background="FF141A26" combo-menu-text="FFEEF2E9"
+                  combo-menu-background-highlight="40C6E93B" combo-menu-text-highlight="FFEEF2E9"/>
+        <ToggleButton border="0" margin="1" padding="1" background-color="00000000" lookAndFeel="LnfV2"
+                      caption-size="0" toggle-text="FF9AA6B4" toggle-tick="FFC6E93B"/>
+        <TextButton border="0" margin="1" padding="1" background-color="00000000" lookAndFeel="LnfV2"
+                    button-color="FF141A26" button-on-color="FFC6E93B" text-color-off="FFEEF2E9"/>
+      </Types>
+      <Palettes>
+        <default/>
+      </Palettes>
+    </Style>
+  </Styles>
+  <View id="root" resizable="1" resize-corner="1" width="1120" height="700"
+        min-width="920" min-height="580" max-width="2400" max-height="1600"
+        lookAndFeel="LnfV2" tooltip-text="FFEEF2E9" tooltip-background="FF141A26"
+        tooltip-outline="FF283349">
+
+    <!-- header: sigil + BETA (identity WITHOUT title text) · preset bar -->
+    <View class="bare" flex-direction="row" min-height="38" max-height="38">
+      <OrbitSigil class="bare" min-width="130" max-width="130"
+                  tooltip="Chaotic-attractor modulation laboratory (beta build)"/>
+      <View class="bare" flex-grow="1"/>
+      <PresetBar class="bare" min-width="360" max-width="420"
+                 tooltip="Load a factory or saved preset; type a name and press Save to store the current state"/>
+    </View>
+
+    <View class="bare" flex-direction="row" flex-grow="1">
+
+      <!-- left rail: system library -->
+      <View class="section" caption="SYSTEM" flex-direction="column"
+            min-width="216" max-width="248">
+        <SystemBrowser class="bare" flex-grow="1"
+                       tooltip="94 strange-attractor systems. Type to search, click the star to pin favorites (saved with the session), click a name to select"/>
+        <View class="bare" flex-direction="row" min-height="86" max-height="86">
+          <View class="swap" flex-grow="1">
+            <Slider parameter="morphMs" caption="Morph" visibility="view:morphMs"
+                    tooltip="Crossfade time when switching systems (milliseconds)"/>
+            <ComboBox parameter="morphDiv" caption="Morph" visibility="view:morphDiv"
+                      tooltip="Crossfade time when switching systems, as a beat division of the host tempo"/>
+          </View>
+          <View class="chipcol" min-width="66" max-width="66">
+            <ToggleButton parameter="morphSync" text="beats" max-height="24"
+                          tooltip="Morph time follows the host tempo instead of milliseconds"/>
+            <View class="bare" flex-grow="1"/>
+          </View>
+        </View>
+        <ComboBox parameter="solver" caption="Solver" min-height="52" max-height="52"
+                  tooltip="Auto uses the exact closed form where one exists (pendulum in libration), numerical otherwise"/>
+        <ComboBox parameter="divergence" caption="On Blow-Up" min-height="52" max-height="52"
+                  tooltip="Reset re-seeds the attractor when it diverges (riser then clean restart); Free/Clamp lets it ride and hard-limits"/>
+      </View>
+
+      <!-- hero: phase scope over the bifurcation terrain -->
+      <View class="bare" flex-direction="column" flex-grow="2.6">
+        <PhaseScope class="bare" flex-grow="1"
+                    tooltip="Attractor trajectory (x vs y) — this exact curve is what modulates filter, tremolo and pan"/>
+        <Slider parameter="macro" slider-type="linear-horizontal" slider-textbox="textbox-right"
+                caption="" min-height="40" max-height="40"
+                tooltip="THE knob: walks the bifurcation terrain below — gray fixed point, green limit cycle (sync-able), amber chaos, red blow-up"/>
+        <RegimeStrip class="bare" min-height="20" max-height="20"
+                     tooltip="Regime terrain of the selected system: gray fixed, green periodic, amber chaos, red divergent. Click or drag to jump the Macro"/>
+        <RegimeReadout class="bare" min-height="20" max-height="20"
+                       tooltip="Selected system, current regime, largest Lyapunov exponent, native period and host tempo"/>
+      </View>
+
+      <!-- right fascia -->
+      <View class="bare" flex-direction="column" min-width="392" max-width="440">
+
+        <View class="section" caption="ORBIT" flex-grow="1">
+          <View class="swap" flex-grow="1">
+            <Slider parameter="rate" caption="Rate" visibility="view:rateMs"
+                    tooltip="Warp of the attractor's native clock (multiplier)"/>
+            <ComboBox parameter="rateDiv" caption="Rate" visibility="view:rateDiv"
+                      tooltip="One characteristic orbit locks to this beat division of the host tempo"/>
+          </View>
+          <View class="chipcol" min-width="76" max-width="76">
+            <ToggleButton parameter="rateSync" text="beats" max-height="24"
+                          tooltip="Lock one characteristic orbit to a musical division (uses the measured native period)"/>
+            <ComboBox parameter="orbitReset" caption="Reset" min-height="50"
+                      tooltip="Retrigger the attractor from its on-attractor start every N bars while the host plays"/>
+          </View>
+          <LfoMonitor class="bare" flex-grow="0.9"
+                      tooltip="Live output of LFO A and LFO B"/>
+        </View>
+
+        <View class="section" caption="LFO A" flex-grow="1.1">
+          <View class="chipcol" min-width="104" max-width="104">
+            <ComboBox parameter="lfoAShape" min-height="28"
+                      tooltip="LFO A waveform (sine to drift)"/>
+            <ComboBox parameter="lfoARetrig" min-height="28"
+                      tooltip="Free-running, or phase-locked to the host transport grid"/>
+            <ToggleButton parameter="lfoABipolar" text="bipolar" max-height="22"
+                          tooltip="Bipolar swings around the knob value; unipolar only adds"/>
+          </View>
+          <View class="swap" flex-grow="1">
+            <Slider parameter="lfoARateMs" caption="Rate" visibility="view:lfoAMs"
+                    tooltip="LFO A rate (shown in Hz; type Hz, ms or s to set)"/>
+            <ComboBox parameter="lfoARateDiv" caption="Rate" visibility="view:lfoADiv"
+                      tooltip="LFO A cycle locks to this beat division"/>
+          </View>
+          <View class="chipcol" min-width="66" max-width="66">
+            <ToggleButton parameter="lfoARateSync" text="beats" max-height="24"
+                          tooltip="LFO A rate follows the host tempo"/>
+            <View class="bare" flex-grow="1"/>
+          </View>
+          <Slider parameter="lfoAPhase" caption="Phase" flex-grow="0.9"
+                  tooltip="Phase offset of LFO A in degrees"/>
+        </View>
+
+        <View class="section" caption="LFO B" flex-grow="1.1">
+          <View class="chipcol" min-width="104" max-width="104">
+            <ComboBox parameter="lfoBShape" min-height="28"
+                      tooltip="LFO B waveform (sine to drift)"/>
+            <ComboBox parameter="lfoBRetrig" min-height="28"
+                      tooltip="Free-running, or phase-locked to the host transport grid"/>
+            <ToggleButton parameter="lfoBBipolar" text="bipolar" max-height="22"
+                          tooltip="Bipolar swings around the knob value; unipolar only adds"/>
+          </View>
+          <View class="swap" flex-grow="1">
+            <Slider parameter="lfoBRateMs" caption="Rate" visibility="view:lfoBMs"
+                    tooltip="LFO B rate (shown in Hz; type Hz, ms or s to set)"/>
+            <ComboBox parameter="lfoBRateDiv" caption="Rate" visibility="view:lfoBDiv"
+                      tooltip="LFO B cycle locks to this beat division"/>
+          </View>
+          <View class="chipcol" min-width="66" max-width="66">
+            <ToggleButton parameter="lfoBRateSync" text="beats" max-height="24"
+                          tooltip="LFO B rate follows the host tempo"/>
+            <View class="bare" flex-grow="1"/>
+          </View>
+          <Slider parameter="lfoBPhase" caption="Phase" flex-grow="0.9"
+                  tooltip="Phase offset of LFO B in degrees"/>
+        </View>
+
+        <View class="section" caption="MOD DEPTH" flex-direction="column" flex-grow="1.5">
+          <View class="bare" flex-direction="row" flex-grow="1">
+            <Slider parameter="macroModA" caption="Macro A"
+                    tooltip="How far LFO A pushes the Macro along the terrain"/>
+            <Slider parameter="filterBaseModA" caption="Filter A"
+                    tooltip="How far LFO A sweeps the filter base (up to two octaves)"/>
+            <Slider parameter="tremAmtModA" caption="Trem A"
+                    tooltip="How much LFO A adds to the tremolo depth"/>
+            <Slider parameter="rateModA" caption="Rate A"
+                    tooltip="How much LFO A warps the orbit rate (up to two octaves)"/>
+          </View>
+          <View class="bare" flex-direction="row" flex-grow="1">
+            <Slider parameter="macroModB" caption="Macro B"
+                    tooltip="How far LFO B pushes the Macro along the terrain"/>
+            <Slider parameter="filterBaseModB" caption="Filter B"
+                    tooltip="How far LFO B sweeps the filter base (up to two octaves)"/>
+            <Slider parameter="tremAmtModB" caption="Trem B"
+                    tooltip="How much LFO B adds to the tremolo depth"/>
+            <Slider parameter="rateModB" caption="Rate B"
+                    tooltip="How much LFO B warps the orbit rate (up to two octaves)"/>
+          </View>
+        </View>
+
+        <View class="section" caption="SIGNAL PATH" flex-direction="column" flex-grow="1.7">
+          <View class="bare" flex-direction="row" flex-grow="1">
+            <Slider parameter="filterBase" caption="Cutoff"
+                    tooltip="Filter base frequency — attractor x sweeps around it"/>
+            <Slider parameter="filterAmt" caption="Filt Amt"
+                    tooltip="Attractor-to-filter depth (up to four octaves of sweep)"/>
+            <Slider parameter="resonance" caption="Reso"
+                    tooltip="State-variable filter resonance"/>
+            <Slider parameter="tremAmt" caption="Tremolo"
+                    tooltip="Attractor y drives amplitude tremolo"/>
+            <Slider parameter="panAmt" caption="Auto-Pan"
+                    tooltip="Attractor z drives equal-power auto-pan"/>
+          </View>
+          <View class="bare" flex-direction="row" flex-grow="1">
+            <Slider parameter="smoothing" caption="Smooth"
+                    tooltip="One-pole smoothing on the modulation signals (de-zipper)"/>
+            <Slider parameter="mix" caption="Mix"
+                    tooltip="Dry/wet balance"/>
+            <Slider parameter="output" caption="Output"
+                    tooltip="Output trim"/>
+          </View>
+        </View>
+
+      </View>
+    </View>
+  </View>
+</magic>

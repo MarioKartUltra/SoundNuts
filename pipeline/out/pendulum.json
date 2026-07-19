@@ -1,0 +1,240 @@
+{
+  "id": "pendulum",
+  "dim": 2,
+  "bifurcation_param": "theta0",
+  "bifurcation_range": [
+    0.0,
+    3.141592653589793
+  ],
+  "on_attractor_ic": [
+    1.570796,
+    0.0
+  ],
+  "control_rate_hz": 500.0,
+  "points": [
+    {
+      "bifurcation": 0.0,
+      "regime": "fixed_point",
+      "largest_lyapunov": 0.0,
+      "period": -1.0,
+      "center": [
+        0.0,
+        0.0
+      ],
+      "scale": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "bifurcation": 0.066667,
+      "regime": "limit_cycle",
+      "largest_lyapunov": 0.0,
+      "period": 0.998,
+      "center": [
+        -1e-06,
+        8e-06
+      ],
+      "scale": [
+        4.775318,
+        0.761395
+      ]
+    },
+    {
+      "bifurcation": 0.133333,
+      "regime": "limit_cycle",
+      "largest_lyapunov": 0.0,
+      "period": 1.008,
+      "center": [
+        -0.0,
+        1.9e-05
+      ],
+      "scale": [
+        2.387637,
+        0.382795
+      ]
+    },
+    {
+      "bifurcation": 0.2,
+      "regime": "limit_cycle",
+      "largest_lyapunov": 0.0,
+      "period": 1.022,
+      "center": [
+        -4e-06,
+        -7.4e-05
+      ],
+      "scale": [
+        1.591758,
+        0.257554
+      ]
+    },
+    {
+      "bifurcation": 0.266667,
+      "regime": "limit_cycle",
+      "largest_lyapunov": 0.0,
+      "period": 1.04,
+      "center": [
+        0.0,
+        -0.0
+      ],
+      "scale": [
+        1.193833,
+        0.195674
+      ]
+    },
+    {
+      "bifurcation": 0.333333,
+      "regime": "limit_cycle",
+      "largest_lyapunov": 0.0,
+      "period": 1.07,
+      "center": [
+        2e-06,
+        -4.6e-05
+      ],
+      "scale": [
+        0.955047,
+        0.159178
+      ]
+    },
+    {
+      "bifurcation": 0.4,
+      "regime": "limit_cycle",
+      "largest_lyapunov": 0.0,
+      "period": 1.106,
+      "center": [
+        1.2e-05,
+        -2.2e-05
+      ],
+      "scale": [
+        0.795871,
+        0.135407
+      ]
+    },
+    {
+      "bifurcation": 0.466667,
+      "regime": "limit_cycle",
+      "largest_lyapunov": 0.0,
+      "period": 1.148,
+      "center": [
+        8e-06,
+        -0.000193
+      ],
+      "scale": [
+        0.682177,
+        0.118946
+      ]
+    },
+    {
+      "bifurcation": 0.533333,
+      "regime": "limit_cycle",
+      "largest_lyapunov": 0.0,
+      "period": 1.204,
+      "center": [
+        -2.1e-05,
+        -3e-06
+      ],
+      "scale": [
+        0.596901,
+        0.107101
+      ]
+    },
+    {
+      "bifurcation": 0.6,
+      "regime": "limit_cycle",
+      "largest_lyapunov": 0.0,
+      "period": 1.276,
+      "center": [
+        6e-06,
+        -7.3e-05
+      ],
+      "scale": [
+        0.530574,
+        0.098383
+      ]
+    },
+    {
+      "bifurcation": 0.666667,
+      "regime": "limit_cycle",
+      "largest_lyapunov": 0.0,
+      "period": 1.368,
+      "center": [
+        -1.2e-05,
+        -0.000341
+      ],
+      "scale": [
+        0.477513,
+        0.091912
+      ]
+    },
+    {
+      "bifurcation": 0.733333,
+      "regime": "limit_cycle",
+      "largest_lyapunov": 0.0,
+      "period": 1.482,
+      "center": [
+        1.4e-05,
+        5.5e-05
+      ],
+      "scale": [
+        0.434095,
+        0.087134
+      ]
+    },
+    {
+      "bifurcation": 0.8,
+      "regime": "limit_cycle",
+      "largest_lyapunov": 0.0,
+      "period": 1.65,
+      "center": [
+        3e-06,
+        -0.000447
+      ],
+      "scale": [
+        0.39792,
+        0.083702
+      ]
+    },
+    {
+      "bifurcation": 0.866667,
+      "regime": "limit_cycle",
+      "largest_lyapunov": 0.0,
+      "period": 1.886,
+      "center": [
+        7e-06,
+        -0.000623
+      ],
+      "scale": [
+        0.367307,
+        0.081392
+      ]
+    },
+    {
+      "bifurcation": 0.933333,
+      "regime": "limit_cycle",
+      "largest_lyapunov": 0.0,
+      "period": 2.31,
+      "center": [
+        1e-05,
+        -0.000163
+      ],
+      "scale": [
+        0.341063,
+        0.080075
+      ]
+    },
+    {
+      "bifurcation": 1.0,
+      "regime": "fixed_point",
+      "largest_lyapunov": 0.0,
+      "period": -1.0,
+      "center": [
+        3.141593,
+        -0.0
+      ],
+      "scale": [
+        0.0,
+        0.0
+      ]
+    }
+  ]
+}

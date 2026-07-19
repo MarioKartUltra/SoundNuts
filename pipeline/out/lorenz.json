@@ -1,0 +1,273 @@
+{
+  "id": "lorenz",
+  "dim": 3,
+  "bifurcation_param": "rho",
+  "bifurcation_range": [
+    0.0,
+    90.0
+  ],
+  "on_attractor_ic": [
+    -9.786929,
+    -15.03852,
+    20.533978
+  ],
+  "control_rate_hz": 100.0,
+  "points": [
+    {
+      "bifurcation": 0.0,
+      "regime": "fixed_point",
+      "largest_lyapunov": -1.016562,
+      "period": -1.0,
+      "center": [
+        -0.0,
+        -0.0,
+        0.0
+      ],
+      "scale": [
+        38323109535.464935,
+        42581232817.18325,
+        0.0
+      ]
+    },
+    {
+      "bifurcation": 0.066667,
+      "regime": "fixed_point",
+      "largest_lyapunov": -0.854755,
+      "period": 1.32,
+      "center": [
+        3.651484,
+        3.651484,
+        5.0
+      ],
+      "scale": [
+        12351578.409368,
+        11155872.564835,
+        7136309.004415
+      ]
+    },
+    {
+      "bifurcation": 0.133333,
+      "regime": "fixed_point",
+      "largest_lyapunov": -0.489358,
+      "period": 0.92,
+      "center": [
+        5.416018,
+        5.416029,
+        10.99998
+      ],
+      "scale": [
+        9244.71582,
+        8190.232893,
+        5983.069986
+      ]
+    },
+    {
+      "bifurcation": 0.2,
+      "regime": "limit_cycle",
+      "largest_lyapunov": -0.228147,
+      "period": 0.76,
+      "center": [
+        6.73964,
+        6.745424,
+        16.994694
+      ],
+      "scale": [
+        2.908131,
+        2.248091,
+        1.717048
+      ]
+    },
+    {
+      "bifurcation": 0.266667,
+      "regime": "chaos",
+      "largest_lyapunov": 0.850597,
+      "period": -1.0,
+      "center": [
+        -0.128642,
+        -0.251954,
+        20.782499
+      ],
+      "scale": [
+        0.066991,
+        0.052813,
+        0.064074
+      ]
+    },
+    {
+      "bifurcation": 0.333333,
+      "regime": "chaos",
+      "largest_lyapunov": 0.943777,
+      "period": -1.0,
+      "center": [
+        -0.179285,
+        -0.366005,
+        26.85231
+      ],
+      "scale": [
+        0.058285,
+        0.04446,
+        0.054039
+      ]
+    },
+    {
+      "bifurcation": 0.4,
+      "regime": "chaos",
+      "largest_lyapunov": 1.04123,
+      "period": -1.0,
+      "center": [
+        -0.429341,
+        -0.900336,
+        32.144171
+      ],
+      "scale": [
+        0.053847,
+        0.03987,
+        0.046176
+      ]
+    },
+    {
+      "bifurcation": 0.466667,
+      "regime": "chaos",
+      "largest_lyapunov": 1.194153,
+      "period": -1.0,
+      "center": [
+        -0.214565,
+        -0.306041,
+        38.409571
+      ],
+      "scale": [
+        0.049335,
+        0.035849,
+        0.042455
+      ]
+    },
+    {
+      "bifurcation": 0.533333,
+      "regime": "chaos",
+      "largest_lyapunov": 1.227897,
+      "period": -1.0,
+      "center": [
+        -0.245226,
+        -0.781503,
+        43.172077
+      ],
+      "scale": [
+        0.045531,
+        0.032082,
+        0.034424
+      ]
+    },
+    {
+      "bifurcation": 0.6,
+      "regime": "chaos",
+      "largest_lyapunov": 1.359411,
+      "period": -1.0,
+      "center": [
+        0.439709,
+        0.59673,
+        51.051254
+      ],
+      "scale": [
+        0.0432,
+        0.029796,
+        0.035645
+      ]
+    },
+    {
+      "bifurcation": 0.666667,
+      "regime": "chaos",
+      "largest_lyapunov": 1.392166,
+      "period": -1.0,
+      "center": [
+        -0.409101,
+        -0.713677,
+        56.647498
+      ],
+      "scale": [
+        0.041479,
+        0.028141,
+        0.033157
+      ]
+    },
+    {
+      "bifurcation": 0.733333,
+      "regime": "chaos",
+      "largest_lyapunov": 1.450267,
+      "period": -1.0,
+      "center": [
+        0.676367,
+        1.514437,
+        58.955831
+      ],
+      "scale": [
+        0.038884,
+        0.025817,
+        0.027127
+      ]
+    },
+    {
+      "bifurcation": 0.8,
+      "regime": "chaos",
+      "largest_lyapunov": 1.469469,
+      "period": -1.0,
+      "center": [
+        0.560417,
+        1.235206,
+        68.259707
+      ],
+      "scale": [
+        0.037175,
+        0.024254,
+        0.028
+      ]
+    },
+    {
+      "bifurcation": 0.866667,
+      "regime": "chaos",
+      "largest_lyapunov": 1.434909,
+      "period": -1.0,
+      "center": [
+        0.205264,
+        0.60807,
+        75.005776
+      ],
+      "scale": [
+        0.036284,
+        0.02347,
+        0.027574
+      ]
+    },
+    {
+      "bifurcation": 0.933333,
+      "regime": "chaos",
+      "largest_lyapunov": 1.471085,
+      "period": -1.0,
+      "center": [
+        -0.632326,
+        -1.368799,
+        78.738843
+      ],
+      "scale": [
+        0.033591,
+        0.020966,
+        0.022489
+      ]
+    },
+    {
+      "bifurcation": 1.0,
+      "regime": "chaos",
+      "largest_lyapunov": 1.362024,
+      "period": -1.0,
+      "center": [
+        -0.319066,
+        -0.474575,
+        83.000529
+      ],
+      "scale": [
+        0.031398,
+        0.018749,
+        0.019474
+      ]
+    }
+  ]
+}

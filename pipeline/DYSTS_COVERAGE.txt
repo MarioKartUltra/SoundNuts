@@ -1,0 +1,43 @@
+PORTED 91 systems; SKIPPED 42
+wrote /Users/amasaryk/projects/SoundNuts/dsp/include/soundnuts/generated_systems.hpp
+skip reasons: {'no': 24, 'stmt': 1, 'name': 8, 'IC/dim': 5, 'param': 1, 'err:': 1, 'call': 1, 't': 1}
+  skip Lorenz96: no static _rhs (rhs(self)/N-D)
+  skip ThomasLabyrinth: no static _rhs (rhs(self)/N-D)
+  skip DoublePendulum: stmt AugAssign
+  skip SwingingAtwood: name g
+  skip GlycolyticOscillation: name phi
+  skip Chua: name ramp_x
+  skip MultiChua: no static _rhs (rhs(self)/N-D)
+  skip MackeyGlass: IC/dim mismatch
+  skip IkedaDelay: IC/dim mismatch
+  skip SprottDelay: no static _rhs (rhs(self)/N-D)
+  skip VossDelay: IC/dim mismatch
+  skip ScrollDelay: IC/dim mismatch
+  skip PiecewiseCircuit: IC/dim mismatch
+  skip DoubleGyre: name f
+  skip BlinkingRotlet: no static _rhs (rhs(self)/N-D)
+  skip LidDrivenCavityFlow: no static _rhs (rhs(self)/N-D)
+  skip BlinkingVortex: no static _rhs (rhs(self)/N-D)
+  skip InteriorSquirmer: no static _rhs (rhs(self)/N-D)
+  skip OscillatingFlow: name f
+  skip BickleyJet: param eps non-scalar
+  skip WindmiReduced: err: must be real number, not complex
+  skip BelousovZhabotinsky: name xdot
+  skip Coullet: no static _rhs (rhs(self)/N-D)
+  skip LiuChen: no static _rhs (rhs(self)/N-D)
+  skip Bouali: no static _rhs (rhs(self)/N-D)
+  skip PanXuZhou: no static _rhs (rhs(self)/N-D)
+  skip Tsucs2: no static _rhs (rhs(self)/N-D)
+  skip ArnoldWeb: name denom
+  skip ExcitableCell: no static _rhs (rhs(self)/N-D)
+  skip CaTwoPlus: no static _rhs (rhs(self)/N-D)
+  skip CellCycle: no static _rhs (rhs(self)/N-D)
+  skip CircadianRhythm: no static _rhs (rhs(self)/N-D)
+  skip FluidTrampoline: call heaviside
+  skip AnishchenkoAstakhov: no static _rhs (rhs(self)/N-D)
+  skip Colpitts: no static _rhs (rhs(self)/N-D)
+  skip StickSlipOscillator: name tq
+  skip CellularNeuralNetwork: no static _rhs (rhs(self)/N-D)
+  skip BeerRNN: no static _rhs (rhs(self)/N-D)
+  skip Torus: t (non-autonomous)
+  skip CaTwoPlusQuasiperiodic: no static _rhs (rhs(self)/N-D)

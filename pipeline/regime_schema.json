@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SoundNuts RegimeMap",
+  "description": "Offline-computed phase diagram for one attractor system. Emitted by pipeline/sweep.py, consumed by dsp/ (RegimeMap / RegimePoint in attractor_system.hpp). This file is THE data contract — keep both ends in sync.",
+  "type": "object",
+  "required": ["id", "dim", "bifurcation_param", "bifurcation_range", "points"],
+  "properties": {
+    "id": { "type": "string", "description": "system id, matches AttractorSystem::id()" },
+    "dim": { "type": "integer", "minimum": 1, "maximum": 6 },
+    "bifurcation_param": { "type": "string", "description": "native parameter the macro drives, e.g. 'rho'" },
+    "bifurcation_range": {
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 2,
+      "maxItems": 2,
+      "description": "[min,max] native range the [0,1] macro maps onto"
+    },
+    "on_attractor_ic": {
+      "type": "array",
+      "items": { "type": "number" },
+      "description": "initial condition on the attractor (length == dim), from dysts"
+    },
+    "control_rate_hz": { "type": "number", "description": "control rate the period/normalization were measured at" },
+    "points": {
+      "type": "array",
+      "description": "sweep grid, ascending by bifurcation",
+      "items": {
+        "type": "object",
+        "required": ["bifurcation", "regime", "largest_lyapunov", "period", "center", "scale"],
+        "properties": {
+          "bifurcation": { "type": "number", "minimum": 0, "maximum": 1, "description": "macro position [0,1]" },
+          "regime": {
+            "type": "string",
+            "enum": ["fixed_point", "limit_cycle", "chaos", "divergent"],
+            "description": "maps to soundnuts::Regime"
+          },
+          "largest_lyapunov": { "type": "number", "description": "Benettin/QR estimate" },
+          "period": { "type": "number", "description": "dominant period in seconds at unit rate; <0 if undefined" },
+          "center": {
+            "type": "array",
+            "items": { "type": "number" },
+            "description": "per-coordinate affine center (length == dim); out[i]=(s[i]-center[i])*scale[i]"
+          },
+          "scale": {
+            "type": "array",
+            "items": { "type": "number" },
+            "description": "per-coordinate affine scale into [-1,1] (length == dim)"
+          }
+        }
+      }
+    }
+  }
+}
