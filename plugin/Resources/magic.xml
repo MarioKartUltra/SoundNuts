@@ -23,7 +23,7 @@
       </Classes>
       <Types>
         <Slider border="0" margin="1" padding="2" background-color="00000000"
-                slider-type="rotary" slider-textbox="textbox-below" lookAndFeel="LnfV2"
+                slider-type="rotary-horizontal-vertical" slider-textbox="textbox-below" lookAndFeel="LnfV2"
                 caption-size="12" caption-color="FF9AA6B4"/>
         <ComboBox border="0" margin="1" padding="2" background-color="00000000" lookAndFeel="LnfV2"
                   caption-size="12" caption-color="FF9AA6B4" combo-background="FF080B11"
