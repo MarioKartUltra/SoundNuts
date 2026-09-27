@@ -18,9 +18,10 @@ else()
     message(FATAL_ERROR "No local JUCE found — set -DJUCE_DIR=/path/to/JUCE")
 endif()
 
-# The WYSIWYG editor window opens next to the plugin. Turn it OFF for builds that
-# go to other people (it also bakes this source path into the binary).
-option(SOUNDNUTS_GUI_EDITOR "Open the foleys WYSIWYG editor window with the plugin" ON)
+# The foleys WYSIWYG editor is a second window that opens next to the plugin.
+# OFF by default. Configure with -DSOUNDNUTS_GUI_EDITOR=ON to design the layout
+# (it also bakes this source path into the binary, so never ship that build).
+option(SOUNDNUTS_GUI_EDITOR "Open the foleys WYSIWYG editor window with the plugin" OFF)
 # OFF builds the bundles without copying them into ~/Library/Audio/Plug-Ins.
 option(SOUNDNUTS_INSTALL_AFTER_BUILD "Copy the plugins into the user plug-in folders after building" ON)
 
