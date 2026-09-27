@@ -18,6 +18,12 @@ else()
     message(FATAL_ERROR "No local JUCE found — set -DJUCE_DIR=/path/to/JUCE")
 endif()
 
+# The WYSIWYG editor window opens next to the plugin. Turn it OFF for builds that
+# go to other people (it also bakes this source path into the binary).
+option(SOUNDNUTS_GUI_EDITOR "Open the foleys WYSIWYG editor window with the plugin" ON)
+# OFF builds the bundles without copying them into ~/Library/Audio/Plug-Ins.
+option(SOUNDNUTS_INSTALL_AFTER_BUILD "Copy the plugins into the user plug-in folders after building" ON)
+
 # --- v2 identity (V2_CONVENTIONS.md): NEW code/bundle so v1 keeps coexisting -
 juce_add_plugin(SoundNutsII
     PLUGIN_MANUFACTURER_CODE Sdnt
@@ -27,7 +33,7 @@ juce_add_plugin(SoundNutsII
     IS_SYNTH                 FALSE
     NEEDS_MIDI_INPUT         FALSE
     IS_MIDI_EFFECT           FALSE
-    COPY_PLUGIN_AFTER_BUILD  TRUE
+    COPY_PLUGIN_AFTER_BUILD  ${SOUNDNUTS_INSTALL_AFTER_BUILD}
     PLUGIN_NAME              "SoundNuts II"
     PRODUCT_NAME             "SoundNuts II"
     FORMATS                  VST3 Standalone AU)
@@ -60,7 +66,7 @@ endif()
 juce_add_module("${FOLEYS_DIR}/modules/foleys_gui_magic")
 
 target_compile_definitions(SoundNutsII PUBLIC
-    FOLEYS_SHOW_GUI_EDITOR_PALLETTE=1
+    FOLEYS_SHOW_GUI_EDITOR_PALLETTE=$<BOOL:${SOUNDNUTS_GUI_EDITOR}>
     FOLEYS_ENABLE_BINARY_DATA=0
     FOLEYS_ENABLE_OPEN_GL_CONTEXT=0)
 
@@ -86,3 +92,19 @@ target_include_directories(soundnuts_v2_check PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/../dsp/include"
     "${CMAKE_CURRENT_SOURCE_DIR}/Source/common")
 add_test(NAME soundnuts_v2 COMMAND soundnuts_v2_check)
+
+# --- offscreen UI screenshot tool (dev only; NOT a CTest) --------------------
+# Links the juce_add_plugin SHARED-CODE lib so it gets the processor, the
+# foleys editor and BinaryData without building/installing any bundle.
+# Do NOT add juce::* or foleys_gui_magic here: those are INTERFACE libs that
+# would recompile every JUCE module into this exe. SoundNutsII already carries
+# them as $<LINK_ONLY:...>, which propagates the frameworks but not the sources.
+add_executable(soundnuts_shot "${CMAKE_CURRENT_SOURCE_DIR}/tools/soundnuts_shot.cpp")
+target_link_libraries(soundnuts_shot PRIVATE SoundNutsII)
+target_include_directories(soundnuts_shot PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/Source"
+    "${CMAKE_CURRENT_SOURCE_DIR}/Source/common"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../dsp/include"
+    "${CMAKE_CURRENT_SOURCE_DIR}/external/JUCE/modules"
+    "${FOLEYS_DIR}/modules")
+target_compile_definitions(soundnuts_shot PRIVATE JucePlugin_Build_Standalone=1)

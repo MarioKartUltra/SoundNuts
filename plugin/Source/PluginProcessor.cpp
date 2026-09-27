@@ -350,7 +350,8 @@ void SoundNutsProcessor::initialiseBuilder(foleys::MagicGUIBuilder& builder)
 
 juce::ValueTree SoundNutsProcessor::createGuiValueTree()
 {
-    juce::String text(BinaryData::magic_xml, (size_t) BinaryData::magic_xmlSize);
+    // fromUTF8: the (ptr, size) constructor garbles non-ASCII captions and tooltips
+    const auto text = juce::String::fromUTF8(BinaryData::magic_xml, BinaryData::magic_xmlSize);
     auto tree = juce::ValueTree::fromXml(text);
     jassert(tree.isValid());                       // shipped default layout
     return tree.isValid() ? tree : juce::ValueTree("magic");
