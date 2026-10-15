@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Abraham Joseph Okayli Masaryk
 // SoundNuts II — v2 offline checks (JUCE-free). Wired as CTest `soundnuts_v2`.
 //   1. frozen tempo-division table math
 //   2. LFO shape bounds + seeded determinism (S&H / smooth-random / drift)

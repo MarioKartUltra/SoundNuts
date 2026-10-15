@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Abraham Joseph Okayli Masaryk
 // SoundNuts — registry.hpp
 // Owns the curated attractor systems and wires each one's RegimeMap from the
 // baked offline sweep (registry_data.hpp). No runtime file I/O or JSON parser.

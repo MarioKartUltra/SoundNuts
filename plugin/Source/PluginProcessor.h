@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Abraham Joseph Okayli Masaryk
 // =============================================================================
 //  SoundNuts II — PluginProcessor.h  (v2 beta)
 //  Chaotic-attractor modulation FX. The trajectory of one of 94 strange

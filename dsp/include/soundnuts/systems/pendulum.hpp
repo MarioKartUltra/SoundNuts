@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Abraham Joseph Okayli Masaryk
 // SoundNuts — systems/pendulum.hpp
 // Gravity pendulum: theta'' + omega0^2 sin(theta) = 0, state (theta, omega).
 // The reference ANALYTIC-CAPABLE system: exact Jacobi-elliptic solution in the

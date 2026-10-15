@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Abraham Joseph Okayli Masaryk
 // SoundNuts — chaotic-attractor modulation engine
 // attractor_system.hpp — core interface for a dynamical-system mod source.
 //

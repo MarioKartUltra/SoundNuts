@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Abraham Joseph Okayli Masaryk
 // SoundNuts — mod_engine.hpp
 // Ties integrator + regime-map normalization into N bounded modulation outputs.
 // The flow -> CV path (maps/sequencer live in sequencer.hpp, parked).

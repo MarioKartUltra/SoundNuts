@@ -1,82 +1,63 @@
-# SoundNuts — plugin
+# SoundNuts II — the plugin
 
-JUCE FX wrapper around the validated JUCE-free `soundnuts::ModEngine`. A
-**chaotic-attractor modulation effect**: the trajectory of a strange attractor
-(Lorenz / Rössler / Pendulum) drives a filter, tremolo, and auto-pan on the
-incoming audio. One **Macro** knob walks the bifurcation diagram
-(`fixed point → limit cycle → chaos → tamed blow-up`); a colored **regime strip**
-shows the terrain and a **phase-space scope** shows the attractor live.
+The JUCE wrapper around the JUCE-free modulation engine in [`../dsp`](../dsp). The trajectory of a
+strange attractor drives a filter, tremolo and auto-pan on the input; the **Macro** walks the
+bifurcation diagram; the regime strip and the phase-space scope show where you are.
 
-The DSP core, the offline regime pipeline (`../pipeline/sweep.py`), and the baked
-normalization (`../dsp/include/soundnuts/registry_data.hpp`, regenerate with
-`python3 ../pipeline/bake_regimes.py`) are all upstream of this wrapper.
+## Controls
 
-## Build (Apple Silicon)
-```bash
-./build.sh            # pins Apple clang + Xcode SDK, scrubs conda env vars
+- **System** browser with search and starred favourites; **system morph** crossfades between two
+  systems (ms or beats) with the engines pre-built, so switching never allocates on the audio thread.
+- **Macro**, **Rate**, **Filter** base and amount, **Resonance**, **Tremolo**, **Auto-pan**,
+  **Smoothing**, **Solver** (auto, numerical, analytic), **On blow-up** (reset or free-clamp),
+  **Mix**, **Output**.
+- **Orbit tempo-sync**: lock one characteristic orbit to a beat division; bar-locked orbit reset.
+- **LFO A / B** with eight shapes, free or synced rate, transport phase-lock, bipolar or unipolar,
+  and bounded depths onto Macro, Filter base, Tremolo and Rate.
+- Six factory presets and named user presets.
+
+## Install a release (no build needed)
+
+Download `SoundNuts-II-2.0.0-macOS.zip` from the [Releases](https://github.com/MarioKartUltra/SoundNuts/releases)
+page and unzip it. The bundles are signed ad hoc rather than notarised, so macOS quarantines them
+after the download. Clear that first, then copy them into the user plug-in folders:
+
+```sh
+xattr -dr com.apple.quarantine "SoundNuts II.vst3" "SoundNuts II.component" "SoundNuts II.app"
+cp -R "SoundNuts II.vst3"      ~/Library/Audio/Plug-Ins/VST3/
+cp -R "SoundNuts II.component" ~/Library/Audio/Plug-Ins/Components/
 ```
-Artifacts under `build/SoundNuts_artefacts/Release/` (VST3 / Standalone / AU).
-`COPY_PLUGIN_AFTER_BUILD` installs VST3+AU to your user plug-in folders.
 
-## Install / signing (macOS, arm64)
-arm64 code must be signed to load in a host. Ad-hoc sign + copy to the system
-folder if that's what your DAW scans:
-```bash
-codesign --force --deep -s - ~/Library/Audio/Plug-Ins/VST3/SoundNuts.vst3
-cp -R ~/Library/Audio/Plug-Ins/VST3/SoundNuts.vst3 /Library/Audio/Plug-Ins/VST3/
-codesign --force --deep -s - /Library/Audio/Plug-Ins/VST3/SoundNuts.vst3
+Then rescan in the DAW (Ableton Live: Settings → Plug-Ins → Rescan; Logic and GarageBand pick up
+the AU after a restart). `SoundNuts II.app` is the standalone version; pick an input device in its options. macOS 11 or later,
+Apple Silicon or Intel.
+
+## Build from source (macOS)
+
+Xcode command-line tools and CMake 3.22 or later (`brew install cmake ninja`).
+
+```sh
+git clone https://github.com/MarioKartUltra/SoundNuts.git
+cd SoundNuts/plugin
+./build.sh                 # arm64
+./build.sh --universal     # arm64 + x86_64
 ```
-Use `/usr/bin/codesign` explicitly (a conda `codesign` shim may shadow it).
 
-## Test
-It's an **audio effect** — it needs an input signal.
-- **In a DAW:** drop it on an audio track playing a pad/drum loop. Turn **Macro**
-  from left (parked) toward the amber zone (chaos); watch the scope + regime strip.
-- **Standalone:** `open build/SoundNuts_artefacts/Release/Standalone/SoundNuts.app`,
-  set an input device (mic/loopback) in ⚙︎ Options.
-- Validate as a host: `auval -v aufx Snut Sdnt`.
+The first configure fetches JUCE 8.0.7 and the patched foleys_gui_magic (network, once). To build
+against checkouts you already have, pass `-DJUCE_DIR=... -DFOLEYS_DIR=...` or symlink them as
+`external/JUCE` and `external/foleys_gui_magic`.
 
-Controls: System, Macro, Rate, Filter Base/Amount, Resonance, Tremolo, Auto-Pan,
-Smoothing, Solver (Auto/Numerical/Analytic), On Blow-Up (Reset/Free-Clamp),
-Mix, Output.
+Artefacts land in `build/SoundNutsII_artefacts/Release/`. By default the VST3 and AU are also copied into `~/Library/Audio/Plug-Ins`; pass
+`-DSOUNDNUTS_INSTALL_AFTER_BUILD=OFF` to keep them in the build directory. `-DSOUNDNUTS_GUI_EDITOR=ON`
+opens foleys' WYSIWYG layout editor beside the plugin, for development only.
 
----
-
-# v2 — SoundNuts II (beta)
-
-v2 lives beside v1 under a NEW identity so both load in a DAW at once:
-`aufx Snt2 Sdnt`, bundle `com.soundnuts.v2`, product **SoundNuts II**, version 2.0.0.
-The v1 bundles/tag (`v1-baseline`) are untouched. Universal binary (arm64 + x86_64).
-
-## What's new
-- **foleys_gui_magic GUI** (`foleys::MagicProcessor`, C++20) with a designed default
-  layout in `Resources/magic.xml`. Beta builds ship the WYSIWYG palette
-  (`FOLEYS_SHOW_GUI_EDITOR_PALLETTE=1`): open the editor inside the plugin (cog icon)
-  and redesign details live. Custom GuiItems: `PhaseScope` (hero), `RegimeStrip`
-  (click/drag to jump the Macro), `RegimeReadout`, `SystemBrowser`, `LfoMonitor`,
-  `OrbitSigil`, `PresetBar`. Resizable; tooltips on every control. Stealth-beta: the
-  rendered GUI carries no product name — identity is the chartreuse accent + orbit
-  sigil + BETA tag.
-- **Orbit tempo-sync**: `beats` chip locks one characteristic orbit to a beat division
-  (frozen 16-division table; measured native periods, see `docs/MATH.md`). Bar-locked
-  **orbit reset** (off / 1 / 2 / 4 / 8 bars).
-- **LFO A/B mod matrix**: 8 shapes (incl. S&H / smoothed random / drift, seeded and
-  deterministic), free-Hz or synced rate, transport phase-lock, bipolar/unipolar;
-  bounded-offset depths onto Macro, Filter Base, Tremolo, Rate.
-- **System morph**: crossfade between systems (ms or beats), engines pre-built so
-  switching never allocates on the audio thread.
-- **System browser** with search + starred favorites (persist in the session state).
-- **Presets**: 6 factory presets + named user presets under
-  `~/Music/SoundNuts II/Presets/*.xml`.
-- All time/rate controls read in real units (ms / s, Hz, %, dB, divisions).
-
-## Build
-```bash
-./build.sh               # arm64 dev loop
-./build.sh --universal   # arm64 + x86_64 release build
-ctest --test-dir build --output-on-failure   # v1 core check + v2 infra/orbit checks
+```sh
+ctest --test-dir build --output-on-failure    # the offline DSP checks
+auval -v aufx Snt2 Sdnt                      # validate the installed AU
 ```
-Artifacts under `build/SoundNutsII_artefacts/Release/`. Validate: `auval -v aufx Snt2 Sdnt`.
-Vendored shared v2 infra in `Source/common/acv2` (TempoSync/Lfo/SeedPolicy/Units +
-Theme/LnfV2). foleys checkout is expected at `external/foleys_gui_magic` (symlink).
-Math notes: `../docs/MATH.md`.
+
+## Licence
+
+SoundNuts II is free software under the GNU Affero General Public License, version 3 or later
+(`../LICENSE`). Third-party components and their licences are listed in `../NOTICE`; JUCE is used under
+its AGPLv3 option.

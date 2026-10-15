@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Abraham Joseph Okayli Masaryk
 // SoundNuts — integrator.hpp
 // Fixed-step RK4 at a control rate decoupled from audio sample rate.
 
@@ -21,7 +23,7 @@ public:
     // Reset to the on-attractor IC (call on load / note-retrigger / divergence).
     void reset() { state_ = sys_.onAttractorIC(); }
 
-    // Seed an arbitrary state — used by the analytic<->numerical handoff so there
+    // Seed an arbitrary state — used by the analytic<->numerical switch-over so there
     // is no discontinuity when the macro crosses a closed-form validity boundary.
     void setState(const State& s) { state_ = s; }
 

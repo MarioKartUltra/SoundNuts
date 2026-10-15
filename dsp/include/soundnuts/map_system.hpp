@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Abraham Joseph Okayli Masaryk
 // SoundNuts — map_system.hpp
 // Discrete-time system: x_{n+1} = f(x_n; p). One iterate per clock tick -> a
 // natural MIDI *event* source (vs flows, which are natural continuous CV).

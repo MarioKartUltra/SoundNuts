@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Abraham Joseph Okayli Masaryk
 // SoundNuts — systems/rossler.hpp
 // Rössler '76. Single-folded-band chaos; smoother / more "rolling" than Lorenz,
 // which makes it a nice musical LFO source.

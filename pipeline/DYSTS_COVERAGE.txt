@@ -1,5 +1,5 @@
 PORTED 91 systems; SKIPPED 42
-wrote /Users/amasaryk/projects/SoundNuts/dsp/include/soundnuts/generated_systems.hpp
+wrote dsp/include/soundnuts/generated_systems.hpp
 skip reasons: {'no': 24, 'stmt': 1, 'name': 8, 'IC/dim': 5, 'param': 1, 'err:': 1, 'call': 1, 't': 1}
   skip Lorenz96: no static _rhs (rhs(self)/N-D)
   skip ThomasLabyrinth: no static _rhs (rhs(self)/N-D)

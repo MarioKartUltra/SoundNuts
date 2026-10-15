@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Abraham Joseph Okayli Masaryk
 // SoundNuts — analytic/elliptic.hpp
 // Jacobi elliptic functions + complete elliptic integral, the primitives behind
 // the closed-form pendulum / Duffing solutions.

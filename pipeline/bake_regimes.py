@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Copyright (C) 2026 Abraham Joseph Okayli Masaryk
 """Bake pipeline/out/*.json regime maps into a C++ header so the plugin needs no
 runtime file I/O or JSON parser. Emits dsp/include/soundnuts/registry_data.hpp.
 

@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2026 Abraham Joseph Okayli Masaryk
 // =============================================================================
 //  soundnuts_shot.cpp — offscreen UI screenshot tool for SoundNuts II.
 //
@@ -210,9 +212,8 @@ int main (int argc, char** argv)
 {
     juce::ScopedJuceInitialiser_GUI juceInit;   // declared first: outlives everything
 
-    const juce::String defaultOut =
-        "/private/tmp/claude-501/-Users-amasaryk-projects/"
-        "fc9277dc-03c0-456c-8d90-535220843ea7/scratchpad/shots/SoundNuts";
+    // default output: ./shots under the current directory (pass a path to change it)
+    const juce::String defaultOut = juce::File::getCurrentWorkingDirectory().getChildFile ("shots").getFullPathName();
 
     constexpr double sr    = 48000.0;
     constexpr int    block = 512;
