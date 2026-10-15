@@ -31,7 +31,7 @@ int main()
     using namespace acv2;
 
     // 1 ---- tempo table --------------------------------------------------------
-    CHECK(tempo::kNumDivisions == 16, "division table frozen at 16");
+    CHECK(tempo::kNumDivisions == 21, "the first 16 divisions are frozen; 21 in all");
     CHECK(std::abs(tempo::divisionToMs(8, 120.0) - 500.0) < 1e-9, "1/4 @120 = 500 ms");
     CHECK(std::abs(tempo::divisionToMs(5, 120.0) - 250.0) < 1e-9, "1/8 @120 = 250 ms");
     CHECK(std::abs(tempo::divisionToMs(3, 120.0) - 250.0 * 2.0 / 3.0) < 1e-9, "1/8T @120");
