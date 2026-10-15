@@ -94,6 +94,6 @@ target_include_directories(soundnuts_shot PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/Source"
     "${CMAKE_CURRENT_SOURCE_DIR}/Source/common"
     "${CMAKE_CURRENT_SOURCE_DIR}/../dsp/include"
-    "${CMAKE_CURRENT_SOURCE_DIR}/external/JUCE/modules"
+    "${JUCE_DIR}/modules"
     "${FOLEYS_DIR}/modules")
 target_compile_definitions(soundnuts_shot PRIVATE JucePlugin_Build_Standalone=1)
